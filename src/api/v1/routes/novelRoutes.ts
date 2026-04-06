@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllNovels, getNovelById, createNovel, updateNovel, deleteNovel } from "../controllers/novelController"
+import { getAllNovels, getNovelById, createNovel, updateNovel, deleteNovel } from "../controller/novelController";
 // import { validateRequest } from "../middleware/validate";
 // import { novelSchemas } from "../validation/novelSchemas";
 
