@@ -24,13 +24,27 @@ export const getNovelByIdService = async (id: string): Promise<Novel | null> => 
 };
 
 export const createNovelService = async (newNovel: Omit<Novel, 'id' | 'updatedAt'>): Promise<Novel> => {
-    const result = await addNovel(newNovel);
+    if (!newNovel.title || newNovel.title.trim() === "") {
+        throw new Error("Title is required");
+    }
+
+    const genres = (!newNovel.genres || newNovel.genres.length === 0) ? ["N/A"] : newNovel.genres;
+    const themes = (!newNovel.themes || newNovel.themes.length === 0) ? ["N/A"] : newNovel.themes;
+    const status = newNovel.status ?? "Unread";
+
+    const result = await addNovel({
+        title: newNovel.title.trim(),
+        genres,
+        themes,
+        status,
+    });
+
     return {
         id: result.id,
-        title: newNovel.title,
-        genres: newNovel.genres,
-        themes: newNovel.themes,
-        status: newNovel.status,
+        title: newNovel.title.trim(),
+        genres,
+        themes,
+        status,
         updatedAt: new Date()
     };
 };
