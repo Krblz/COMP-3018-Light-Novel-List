@@ -4,10 +4,10 @@ const swaggerOptions: swaggerJsdoc.Options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "Event Registration API",
+            title: "Light Novel List API",
             version: "1.0.0",
             description:
-                "This is the API documentation for the Event Registration API.",
+                "This is the API documentation for the Light Novel List API.",
         },
         servers: [
             {
