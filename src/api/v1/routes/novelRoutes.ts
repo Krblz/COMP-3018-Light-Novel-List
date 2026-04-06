@@ -21,7 +21,7 @@ const router: Router = Router();
  *         name: limit
  *         schema:
  *           type: integer
- *           default: 10
+ *           default: 1000
  *       - in: query
  *         name: status
  *         schema:

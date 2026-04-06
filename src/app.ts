@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import setupSwagger from "../config/swagger";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -25,3 +26,5 @@ app.get("/api/v1/health", (req, res) => {
 });
 
 export default app;
+
+setupSwagger(app);
