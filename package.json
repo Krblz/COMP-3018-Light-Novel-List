@@ -9,6 +9,7 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "tsc",
+    "generate-docs": "ts-node src/scripts/generate-openapi.ts && npx @redocly/cli build-docs openapi.json --output docs/index.html",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/Krblz/COMP-3018-Light-Novel-List#readme",
   "devDependencies": {
+    "@redocly/cli": "^2.25.4",
     "@types/jest": "^30.0.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.5.2",
