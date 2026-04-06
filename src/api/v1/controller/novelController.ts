@@ -40,10 +40,12 @@ export const createNovel = async (req: Request, res: Response) => {
         const response = toNovelResponse(result);
         res.status(HTTP_STATUS.CREATED).json(successResponse(response, "Novel created"));
     } catch (error: unknown) {
+        if (error instanceof Error && error.message === "Title is required") {
+            return res.status(HTTP_STATUS.BAD_REQUEST).json({ error: "Title is required" });
+        }
         res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({ error: "Internal Server Error" });
     }
 };
-
 export const updateNovel = async (req: Request, res: Response) => {
     try {
         const id = req.params.id as string;
