@@ -1,5 +1,7 @@
 import express, { Express } from "express";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 import novelRoutes from "./api/v1/routes/novelRoutes";
 
