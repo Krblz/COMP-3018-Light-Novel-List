@@ -1,5 +1,8 @@
 import express, { Express } from "express";
 
+
+import novelRoutes from "./api/v1/routes/novelRoutes";
+
 // Initialize Express application
 const app: Express = express();
 
@@ -7,6 +10,8 @@ const app: Express = express();
 app.get("/", (req, res) => {
     res.send("Hello, World!");
 });
+
+app.use("/api/v1", novelRoutes);
 
 app.get("/api/v1/health", (req, res) => {
     res.json({
