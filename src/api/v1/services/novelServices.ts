@@ -30,7 +30,7 @@ export const createNovelService = async (newNovel: Omit<Novel, 'id' | 'updatedAt
 
     const genres = (!newNovel.genres || newNovel.genres.length === 0) ? ["N/A"] : newNovel.genres;
     const themes = (!newNovel.themes || newNovel.themes.length === 0) ? ["N/A"] : newNovel.themes;
-    const status = newNovel.status ?? "Unread";
+    const status = newNovel.status && newNovel.status.trim() !== "" ? newNovel.status : "Unread";
 
     const result = await addNovel({
         title: newNovel.title.trim(),
