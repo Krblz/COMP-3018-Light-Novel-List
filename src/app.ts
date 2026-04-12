@@ -10,10 +10,7 @@ import novelRoutes from "./api/v1/routes/novelRoutes";
 const app: Express = express();
 
 // Define a route
-app.get("/", (req, res) => {
-    res.send("Hello, World!");
-});
-
+app.use(express.json());
 app.use("/api/v1", novelRoutes);
 
 app.get("/api/v1/health", (req, res) => {
