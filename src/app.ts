@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import setupSwagger from "../config/swagger";
+import { apiLimiter } from "../config/rateLimiter";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,6 +12,7 @@ const app: Express = express();
 
 // Define a route
 app.use(express.json());
+app.use(apiLimiter);
 app.use("/api/v1", novelRoutes);
 
 app.get("/api/v1/health", (req, res) => {
