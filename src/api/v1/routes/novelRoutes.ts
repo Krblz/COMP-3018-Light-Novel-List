@@ -2,9 +2,11 @@ import { Router } from "express";
 import { getAllNovels, getNovelById, createNovel, updateNovel, deleteNovel } from "../controller/novelController";
 import { validateRequest } from "../middleware/validate";
 import { novelSchemas } from "../validation/novelSchemas";
+import authenticate from "../middleware/authenticate";
 
 const router: Router = Router();
 
+// Public Routes
 /**
  * @openapi
  * /api/v1/novels:
@@ -99,6 +101,7 @@ router.get('/novels', getAllNovels);
  */
 router.get('/novels/:id', validateRequest(novelSchemas.getById), getNovelById);
 
+// Protected Routes
 /**
  * @openapi
  * /api/v1/novels:
@@ -134,7 +137,7 @@ router.get('/novels/:id', validateRequest(novelSchemas.getById), getNovelById);
  *       500:
  *         description: Internal server error
  */
-router.post('/novels', validateRequest(novelSchemas.create), createNovel);
+router.post('/novels', authenticate, validateRequest(novelSchemas.create), createNovel);
 
 /**
  * @openapi
@@ -176,7 +179,7 @@ router.post('/novels', validateRequest(novelSchemas.create), createNovel);
  *       500:
  *         description: Internal server error
  */
-router.put('/novels/:id', validateRequest(novelSchemas.update), updateNovel);
+router.put('/novels/:id', authenticate, validateRequest(novelSchemas.update), updateNovel);
 
 /**
  * @openapi
@@ -207,6 +210,6 @@ router.put('/novels/:id', validateRequest(novelSchemas.update), updateNovel);
  *       500:
  *         description: Internal server error
  */
-router.delete('/novels/:id', validateRequest(novelSchemas.delete), deleteNovel);
+router.delete('/novels/:id', authenticate, validateRequest(novelSchemas.delete), deleteNovel);
 
 export default router;
