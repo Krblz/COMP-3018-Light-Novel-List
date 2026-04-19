@@ -22,6 +22,7 @@ export const addNovel = async (novelData: Omit<Novel, 'id' | 'updatedAt'>): Prom
         title: novelData.title,
         genres: novelData.genres,
         themes: novelData.themes,
+        link: novelData.link || "",
         status: novelData.status,
         updatedAt: new Date(),
     });
@@ -39,6 +40,7 @@ export const getAllNovels = async (): Promise<Novel[]> => {
             title: doc.data().title,
             genres: doc.data().genres,
             themes: doc.data().themes,
+            link: doc.data().link || "",
             status: doc.data().status,
             updatedAt: doc.data().updatedAt,
         });
@@ -60,6 +62,7 @@ export const getNovelById = async (id: string): Promise<Novel | null> => {
         title: novel.data()!.title,
         genres: novel.data()!.genres,
         themes: novel.data()!.themes,
+        link: novel.data()!.link || "",
         status: novel.data()!.status,
         updatedAt: novel.data()!.updatedAt,
     };
@@ -78,6 +81,7 @@ export const updateNovel = async (id: string, novelData: Partial<Novel>): Promis
     if (novelData.title !== undefined) updateData.title = novelData.title;
     if (novelData.genres !== undefined) updateData.genres = novelData.genres;
     if (novelData.themes !== undefined) updateData.themes = novelData.themes;
+    if (novelData.link !== undefined) updateData.link = novelData.link;
     if (novelData.status !== undefined) updateData.status = novelData.status;
     
     await novelRef.update(updateData);
@@ -89,6 +93,7 @@ export const updateNovel = async (id: string, novelData: Partial<Novel>): Promis
         title: updatedNovel.data()!.title,
         genres: updatedNovel.data()!.genres,
         themes: updatedNovel.data()!.themes,
+        link: updatedNovel.data()!.link || "",
         status: updatedNovel.data()!.status,
         updatedAt: updatedNovel.data()!.updatedAt,
     };

@@ -23,6 +23,9 @@ import Joi from "joi";
  *           items:
  *             type: string
  *           example: ["Video Game", "Gaming"]
+ *         link:
+ *           type: string
+ *           example: "https://j-novel.club/series/sword-art-online"
  *         status:
  *           type: string
  *           enum: [Unread, Reading, Read]
@@ -47,6 +50,8 @@ import Joi from "joi";
  *           type: array
  *           items:
  *             type: string
+ *         link:
+ *           type: string
  *         status:
  *           type: string
  *           enum: [Unread, Reading, Read]
@@ -65,6 +70,8 @@ import Joi from "joi";
  *           type: array
  *           items:
  *             type: string
+ *         link:
+ *           type: string
  *         status:
  *           type: string
  *           enum: [Unread, Reading, Read]
@@ -95,6 +102,9 @@ export const novelSchemas = {
             }),
             themes: Joi.array().items(Joi.string()).optional().messages({
                 "array.base": "Validation error: \"themes\" must be an array of strings"
+            }),
+            link: Joi.string().uri().optional().allow("").messages({
+                "string.uri": "Validation error: \"link\" must be a valid URL"
             }),
             status: Joi.string().valid("Unread", "Reading", "Read").default("Unread").messages({
                 "any.only": "Validation error: \"status\" must be one of [Unread, Reading, Read]"
@@ -130,6 +140,9 @@ export const novelSchemas = {
             }),
             themes: Joi.array().items(Joi.string()).optional().messages({
                 "array.base": "Validation error: \"themes\" must be an array of strings"
+            }),
+            link: Joi.string().uri().optional().allow("").messages({
+                "string.uri": "Validation error: \"link\" must be a valid URL"
             }),
             status: Joi.string().valid("Unread", "Reading", "Read").messages({
                 "any.only": "Validation error: \"status\" must be one of [Unread, Reading, Read]"

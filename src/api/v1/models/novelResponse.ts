@@ -5,6 +5,7 @@ export interface NovelResponse {
     title: string;
     genres: string[];
     themes: string[];
+    link: string,
     status: string;
     updatedAt: string;
     genreWarning?: string;
@@ -39,6 +40,7 @@ export const toNovelResponse = (novel: Novel): NovelResponse => {
         title: novel.title,
         genres: novel.genres,
         themes: novel.themes,
+        link: novel.link || "",
         status: novel.status,
         updatedAt: safeToISOString(novel.updatedAt),
         ...(genreWarning && { genreWarning })

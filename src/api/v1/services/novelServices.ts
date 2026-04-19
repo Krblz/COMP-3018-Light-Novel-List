@@ -5,6 +5,7 @@ export interface Novel {
     title: string,
     genres: string[],
     themes: string[],
+    link: string,
     status: string,     // Read, Unread, Reading
     updatedAt: Date
 }
@@ -36,6 +37,7 @@ export const createNovelService = async (newNovel: Omit<Novel, 'id' | 'updatedAt
         title: newNovel.title.trim(),
         genres,
         themes,
+        link,
         status,
     });
 
