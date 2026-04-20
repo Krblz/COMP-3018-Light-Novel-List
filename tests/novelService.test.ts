@@ -20,6 +20,7 @@ const mockNovel = {
     title: "Sword Art Online",
     genres: ["Action", "Fantasy"],
     themes: ["Video Game", "Gaming"],
+    link: "",
     status: "Unread",
     updatedAt: new Date("2026-01-01T00:00:00Z"),
 };
@@ -79,6 +80,7 @@ describe("createNovelService", () => {
             title: "Sword Art Online",
             genres: ["Action"],
             themes: ["Gaming"],
+            link: "",
             status: "Unread",
         });
 
@@ -94,6 +96,7 @@ describe("createNovelService", () => {
             title: "No Genre Novel",
             genres: [],
             themes: [],
+            link: "",
             status: "Unread",
         });
 
@@ -108,6 +111,7 @@ describe("createNovelService", () => {
             title: "No Status Novel",
             genres: ["Fantasy"],
             themes: ["Adventure"],
+            link: "",
             status: "",
         });
 
@@ -120,6 +124,7 @@ describe("createNovelService", () => {
                 title: "",
                 genres: [],
                 themes: [],
+                link: "",
                 status: "Unread",
             })
         ).rejects.toThrow("Title is required");
@@ -131,6 +136,7 @@ describe("createNovelService", () => {
                 title: "   ",
                 genres: [],
                 themes: [],
+                link: "",
                 status: "Unread",
             })
         ).rejects.toThrow("Title is required");
